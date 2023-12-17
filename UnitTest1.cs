@@ -23,17 +23,17 @@ namespace Web_Scraping
         public void Setup()
         {
             driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://lommel.bibliotheek.be/");
+            driver.Navigate().GoToUrl("https://www.ictjob.be/nl/");
         }
 
         [Test]
         public void ScrapeYouTubeTitles()
         {
-            var element = driver.FindElement(By.XPath("//*[@id=\"edit-search-query-label\"]\r\n"));
-            element.SendKeys("fantasy");
+            var element = driver.FindElement(By.XPath("//*[@id=\"keywords-input\"]"));
+            element.SendKeys("it");
             element.Submit();
 
-            var titles = driver.FindElements(By.ClassName("catalog-item-title-link"));
+            var titles = driver.FindElements(By.ClassName("job-title"));
             foreach (var title in titles)
             {
                 Console.WriteLine(title.Text);
